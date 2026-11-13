@@ -1,5 +1,6 @@
 import type {
 	IDataObject,
+	JsonObject,
 	IExecuteFunctions,
 	ILoadOptionsFunctions,
 	INodeExecutionData,
@@ -8,7 +9,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeConnectionTypes, NodeOperationError, jsonParse, sleep } from 'n8n-workflow';
+import { NodeApiError, NodeConnectionTypes, NodeOperationError, jsonParse, sleep } from 'n8n-workflow';
 
 import {
 	compact,
@@ -39,7 +40,7 @@ export class Raidboxes implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Raidboxes',
 		name: 'raidboxes',
-		icon: 'file:raidboxes.svg',
+		icon: { light: 'file:raidboxes.svg', dark: 'file:raidboxes.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -125,7 +126,11 @@ export class Raidboxes implements INodeType {
 					returnData.push({ json: { error: (error as Error).message }, pairedItem: { item: i } });
 					continue;
 				}
-				throw error;
+				if (error instanceof NodeApiError) {
+					// the NodeApiError constructor hands back the same instance, keeping message and httpCode
+					throw new NodeApiError(this.getNode(), error as unknown as JsonObject, { itemIndex: i });
+				}
+				throw new NodeOperationError(this.getNode(), error as Error, { itemIndex: i });
 			}
 		}
 

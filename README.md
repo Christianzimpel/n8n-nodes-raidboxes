@@ -10,6 +10,8 @@ In n8n: **Settings → Community Nodes → Install** and enter `n8n-nodes-raidbo
 
 ## Credentials
 
+<a id="credentials"></a>
+
 Raidboxes authenticates with email and password (`POST /v1/login`). The node logs in automatically, stores the JWT and logs in again when the token expires.
 
 **Two-factor authentication:** enter the Base32 **2FA Secret** (the text behind the QR code shown when you set up 2FA). The node then generates the 6-digit code for each login itself, so 2FA accounts also work unattended. Leave the field empty if 2FA is off.

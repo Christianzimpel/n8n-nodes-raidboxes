@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.2
+- Passes the official n8n community node linter (@n8n/eslint-plugin-community-nodes): themed icons, documentation URL, error handling.
+
 ## 0.2.1
 - Readable Raidboxes error messages (e.g. "Currently your BOX is being backed up or restored").
 

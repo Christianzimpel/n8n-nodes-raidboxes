@@ -13,9 +13,12 @@ export class RaidboxesApi implements ICredentialType {
 
 	displayName = 'Raidboxes API';
 
-	documentationUrl = 'httpsApiRaidboxesIoDocumentation';
+	documentationUrl = 'https://github.com/Christianzimpel/n8n-nodes-raidboxes#credentials';
 
-	icon = 'file:../nodes/Raidboxes/raidboxes.svg' as const;
+	icon = {
+		light: 'file:../nodes/Raidboxes/raidboxes.svg',
+		dark: 'file:../nodes/Raidboxes/raidboxes.dark.svg',
+	} as const;
 
 	properties: INodeProperties[] = [
 		{
@@ -47,7 +50,7 @@ export class RaidboxesApi implements ICredentialType {
 			displayName: 'Session Token',
 			name: 'sessionToken',
 			type: 'hidden',
-			typeOptions: { expirable: true },
+			typeOptions: { expirable: true, password: true },
 			default: '',
 		},
 	];

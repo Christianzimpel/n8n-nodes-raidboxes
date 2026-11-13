@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const src = path.join(__dirname, '..', 'nodes', 'Raidboxes', 'raidboxes.svg');
-const dst = path.join(__dirname, '..', 'dist', 'nodes', 'Raidboxes', 'raidboxes.svg');
-fs.mkdirSync(path.dirname(dst), { recursive: true });
-fs.copyFileSync(src, dst);
+const dir = path.join(__dirname, '..', 'nodes', 'Raidboxes');
+const out = path.join(__dirname, '..', 'dist', 'nodes', 'Raidboxes');
+fs.mkdirSync(out, { recursive: true });
+for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.svg'))) {
+	fs.copyFileSync(path.join(dir, file), path.join(out, file));
+}
