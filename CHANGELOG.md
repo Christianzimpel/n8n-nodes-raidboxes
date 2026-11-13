@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.3
+- Fix release workflow (version check). No code changes.
+
 ## 0.2.2
 - Passes the official n8n community node linter (@n8n/eslint-plugin-community-nodes): themed icons, documentation URL, error handling.
 

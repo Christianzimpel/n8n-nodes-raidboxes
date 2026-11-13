@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-raidboxes",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "n8n community node for the Raidboxes API \u2013 manage Boxes, backups, cache, settings, subscriptions and SSH keys.",
   "keywords": [
     "n8n-community-node-package",
